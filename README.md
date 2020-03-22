@@ -72,5 +72,5 @@ description coming soon
 * *PacketSkip: Skip Graph for Multidimensional Search in Structured Peer-to-Peer Systems*  
   https://www.dropbox.com/s/sll8j7er18b3u2i/measurement_data1.zip
 
-* *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*
+* *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*  
   https://www.dropbox.com/s/l7wq06r3s7amd27/measurement_data2.zip
