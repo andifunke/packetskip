@@ -1,0 +1,35 @@
+\section{PacketSkip Improvements}
+\label{sec:solution}
+
+In this section, we first describe our solution for the storage and update message issue. Secondly, we present our approach for a host cache.
+
+\subsection{Protocol revisions}
+\label{subsec:revisions}
+
+Version 1.0 of the PacketSkip protocol had a notable redundancy in the content of update messages sent to PacketSkip. 
+The additional features were added to the index elements on the sending peer. Additional features are basically a copy of all other elements in the update set. As long as all features are sent in one message, as is the case when sending an update to an entry node of PacketSkip, the additional feature sets per element contain no essential information. The additional feature sets become only relevant when index items are dispersed on several nodes. Therefore, it is sufficient when the receiving entry node of PacketSkip builds the additional feature sets from all other index elements. This is the first change in the protocol (v1.1). Via this simple change we avoid adding capacity information multiple times to one update message. Since update messages to PacketSkip are frequent and sent by all peers in the overlay, this has a noticeable effect on the overall maintenance traffic costs.
+
+In addition, v1.2 reduces redundancy on the storage side and on PacketSkip's inner update traffic. The goal was to not impact the general positive behavior introduced in v1.0. Some concessions to the search duration were nevertheless necessary. If search duration is paramount, v1.2 can be regarded as an option. Before adding additional features to an index element, all features are sorted lexicographically by their feature id. We regard all features as items in an ordered transaction set. In our example the ordered transaction would be $\{ BW,\;CPU,\;MEM,\;STOR \}$. Then we will add only those features to the additional feature set of an index element which are suffixes of is feature id in regard to its ordered transaction set. In our example this will lead to the following elements:
+\begin{equation*}
+\begin{split}
+(5000, \;BW,   \;\{ CPU\text{:}2400, MEM\text{:}123, STOR\text{:}9583 \}, \\ \;peer\text{=}x | ip(x)\text{:}port(x)) \\
+(2400, \;CPU,  \;\{ MEM\text{:}123, STOR\text{:}9583 \},                  \\ \;peer\text{=}x | ip(x)\text{:}port(x)) \\
+(123,  \;MEM,  \;\{ STOR\text{:}9583 \},                                     \;peer\text{=}x | ip(x)\text{:}port(x)) \\
+(9583, \;STOR, \;\{ \},                                                      \;peer\text{=}x | ip(x)\text{:}port(x))
+\end{split}
+\end{equation*}
+
+We have now reduced the costs for additional features from $(d-1)^2$ to $(d^2-d)/2$ with $d$ being the number of all features. Our costs may still be in $O((d-1)^2)$, but the practical effect is a reduction of 50\% of the storage and update costs for the additional features introduced in v1.0.
+
+In v1.0 a peer was allowed to choose the feature with the smallest search range as a primary feature. With revision v1.2 we must omit this free choice. Instead, the main feature is now determined by the lexicographical order. An entry node will sort the search dimensions lexicographically and search for the feature with the smallest id. For example: $\{ BW\text{:}[5000,\infty), \;\{ STOR\text{:}[5000,6000], \;CPU\text{:}[999,2730] \} \}$. This will guarantee that all features, which are lexicographically higher than the main feature, are included in any index element. The search protocol of v1.0 can remain identical as to the rest. Secondary features are still taken into account on each potential search result, before sending a result set to the seeker.
+
+The following is noteworthy: performing a search on the dimension with the shortest range will not necessarily lead to a minimum amount of search hops or to the shortest search duration. First of all, there is a random factor by choosing an arbitrary entry node, which is unavoidable for good load balancing. Such an entry node may be further away from the shortest range than from a longer range. More importantly, the number of nodes responsible for a given range depends heavily on the distribution of the index elements. Given a normal distribution, a short range close to the mean may result in more search hops than a broad range close to the tail of the distribution. So, the drawback of not choosing the shortest range is somewhat alleviated.
+
+\subsection{Communication host cache}
+\label{subsec:cache}
+
+We introduced a cache to PacketSkip nodes that maps node ids to actual hosts. Each node has its own cache. The cache is not part of the DHT object, but maintained by the PacketSkip service running on a peer. When a node switches to a different peer under churn, the cache is therefore reset. Incoming messages already contain information of the sending host (ip, port), the sending peer (peer id) and the sending node (node id). With each incoming message the cache mapping is updated, with the node id being the key and the host information being its value. Before sending a message to another node, the sender looks up the host information for a given node id from the cache and sends the message directly to this host. A lookup via the p2p overlay is thus bypassed. 
+
+There can be cache misses when a peer either leaves the overlay or the responsibility for a PacketSkip node has changed. In this case, a traditional overlay lookup is performed and the node$\rightarrow$host mapping will be removed from the cache. A cache miss is identified when the sender hasn't received an ACK up to a certain timeout. Since we assume that a direct message to an online host should result in a fast ACK we can set the timeout quite strictly. This will avoid a notable latency for cache misses. Choosing the timeout too strictly can lead to redundant messages. The choice for an appropriate timeout may be host dependent and can also be included as additional information in the host cache.
+
+% This is however beyond the scope of this paper since we have evaluated with a constant net latency.

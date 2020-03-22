@@ -1,0 +1,22 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Peer-to-peer (p2p) systems have become more and more popular in several network applications and services. Due to their self-organizing paradigm, p2p systems avoid a single-point-of-failure and have been proven to be cost-effective, robust and scalable. However, in modern miscellaneous peer-to-peer networks, combining desktop computers and mobile devices, the homogeneous roles of peers clash with the heterogeneous capabilities of their hosts. Weaker hosts that are responsible for important tasks, such as providing popular files, may reduce the overall service quality. Therefore, advanced p2p systems try to allocate heavier load to stronger peers.
+
+Identifying and indexing peers by their capabilities is an ongoing research. Recently, we have proposed PacketSkip, a Skip Graph based, ordered indexing structure, that provides multidimensional range queries for multi-featured peer capacities. Skip Graphs provide a non-hierarchical, distributed data structure where data is arranged in a sorted sequence, access times are logarithmic on average and the graph is robust against node failure. The PacketSkip service inherits and extends these features. PacketSkip can be added as an additional layer to any DHT-based p2p overlay. Although its storage demands are already low, storage and update traffic scalability was still of concern for high-dimensional data. Also, the index uses the overlay's lookup mechanism which adds the networks lookup complexity as a factor to its communication durations.
+
+In this paper, we propose several efficiency optimizations for PacketSkip which help to reduce storage and traffic costs while also boosting performance:
+
+\begin{enumerate}
+  \item protocol change: additional features are added to index elements on the receiving node instead of the sending peer
+  \item protocol change: additional features are only stored in an index element if they are lexicographically higher
+  \item protocol change: a multidimensional search must focus on the feature which is lexicographically lowest
+  \item message delivery optimization: adding a node$\rightarrow$host mapping as a communication cache to each node
+\end{enumerate}
+
+PacketSkip has been introduced in detail in Funke \cite{packetskip09} and Disterh{\"o}ft et al. \cite{packetskip10}.
+%A concise recap follows in Section~\ref{subsec:packetskip}.
+From now on we will refer to these previous protocol revisions as (protocol) v0.9 and v1.0, respectively.
+The now introduced changes to the protocol, which are discussed in Section~\ref{sec:solution}, will be referred to as v1.1 and v1.2.
+
+The remainder of this paper is organized as follows: first, we briefly discuss related works (Section~\ref{sec:related}). We then give a short introduction to Skip Graphs and recapitulate the protocol versions 0.9 and 1.0 by which PacketSkip was originally defined (Section~\ref{sec:protocol}). Next, we discuss the issues on which we want to elaborate our solutions (Section~\ref{sec:solution}) and present the outcome of our thorough evaluation (Section~\ref{sec:evaluation}). Finally, our conclusion and further suggestions for improvements are discussed in Section~\ref{sec:conclusion}.

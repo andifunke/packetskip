@@ -1,0 +1,8 @@
+\section{Conclusion / Future Work}
+\label{sec:conclusion}
+
+In this paper we have presented two protocol changes for the PacketSkip indexing service. They both address issues of maintenance traffic and storage costs. In combination they reduce average bandwidth demands for update messages by factor 2. Storage costs are reduced by a factor of approximately 1.75, depending on the number of features. The reduction increases with higher dimensionality leading to a better scalability of the service. Search duration is slightly and search hops are more strongly impacted, especially in worst case scenarios.
+
+This is compensated by introducing a communication cache which yields to better update and search performance and reduces the overlay lookup traffic. With all modifications combined we were able to improve the efficiency of the service and boost the capacity retrieval performance significantly without affecting its precision.
+
+For future work it would be interesting to parallelize the service, so that we have multiple PacketSkip graphs at a time. Each of them may be responsible for certain features, either in a 1:1 or 1:$N$ relationship. This should lead to another performance boost and better load balancing of the service on more peers.

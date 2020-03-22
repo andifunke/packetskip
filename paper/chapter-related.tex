@@ -1,0 +1,11 @@
+\section{Related Work}
+\label{sec:related}
+
+For an in-depth overview on Skip Graphs -- the data structure PacketSkip is build on -- we recommend the original papers by Aspnes at al. \cite{Aspnes:2007:SG:1290672.1290674} and Harvey et al. \cite{harvey2003skipnet}. Section~\ref{subsec:skipgraph} contains a short summary.
+
+Other approaches in peer capability retrieval use different data structures.
+One branch uses Chord-based~\cite{chord} over-overlays (\cite{adaptivechord}, \cite{Kargar2017147}). 
+Another common direction focuses on tree based topologies (SkyEye:~\cite{DBLP:conf/icpads/GraffiKXS08}, CapSearch:~\cite{capsearch}, Dragon:~\cite{carlini2016dragon}). PacketSkip has been evaluated extensively against CapSearch in \cite{packetskip10}.
+
+With SkipCluster~\cite{xu2011new}, there is another recent Skip Graph based approach, but in the form of a hierarchical super-peer structure.
+In contrast to the foregoing approaches, PacketSkip is non hierarchical and fully flexible in terms of dimensionality, so that capacity features can be added dynamically without updating protocol or topology. It also provides a complete view of the participating peers and very good accuracy (see \cite{packetskip10}).

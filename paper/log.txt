@@ -1,0 +1,201 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(./IEEEtran.cls
+Document Class: IEEEtran 2014/09/17 V1.8a by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+-- This is a 10 point document.
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/paralist/paralist.sty)
+(./HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.aux)
+-- Lines per column: 56 (exact).
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./chapter-intro.tex (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd))
+(./chapter-related.tex) (./chapter-protocol.tex [1{/var/lib/texmf/fonts/map/pdf
+tex/updmap/pdftex.map}]
+<graphics/packetskipgraph_reduced.pdf, id=11, 1324.95pt x 919.435pt>
+<use graphics/packetskipgraph_reduced.pdf> [2]
+Underfull \hbox (badness 6284) in paragraph at lines 65--68
+[]\OT1/ptm/m/n/10 A peer would now add ad-di-tional in-for-ma-tion to
+
+Underfull \hbox (badness 6428) in paragraph at lines 65--68
+\OT1/ptm/m/n/10 each Pack-et-Skip el-e-ment in the form of a set of
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--68
+\OT1/ptm/m/n/10 all other fea-tures. The el-e-ment tu-ples have been
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--68
+\OT1/ptm/m/n/10 ex-tended to the form $\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 h\OML/
+cmm/m/it/10 key$\OT1/ptm/m/n/10 =$\OML/cmm/m/it/10 value\OMS/cmsy/m/n/10 i\OML/
+cmm/m/it/10 ;  \OMS/cmsy/m/n/10 h\OML/cmm/m/it/10 feature$\OT1/ptm/m/n/10 -
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3 <./grap
+hics/packetskipgraph_reduced.pdf>]) (./chapter-solution.tex [4])
+(./chapter-evaluation.tex
+<graphics/1_1/Maintenance_Traffic_Peers_A.pdf, id=41, 361.35pt x 216.81pt>
+<use graphics/1_1/Maintenance_Traffic_Peers_A.pdf>
+<graphics/1_1/Maintenance_Traffic_Peers_C.pdf, id=42, 361.35pt x 216.81pt>
+<use graphics/1_1/Maintenance_Traffic_Peers_C.pdf>
+<graphics/1_1/Maintenance_Traffic_Time_A.pdf, id=43, 361.35pt x 216.81pt>
+<use graphics/1_1/Maintenance_Traffic_Time_A.pdf>
+<graphics/1_1/Maintenance_Traffic_Time_C.pdf, id=44, 361.35pt x 216.81pt>
+<use graphics/1_1/Maintenance_Traffic_Time_C.pdf> [5 <./graphics/1_1/Maintenanc
+e_Traffic_Peers_A.pdf> <./graphics/1_1/Maintenance_Traffic_Peers_C.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_1/Maintenance_Traffic_Peers_C.pdf):
+ PDF inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_1/Maintenance_Traffic_Time_A.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_1/Maintenance_Traffic_Time_A.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_1/Maintenance_Traffic_Time_C.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_1/Maintenance_Traffic_Time_C.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
+>] <graphics/1_2/DHTSize_PeersSort_C.pdf, id=72, 361.35pt x 216.81pt>
+<use graphics/1_2/DHTSize_PeersSort_C.pdf>
+<graphics/1_2/Maintenance_Traffic_Peers_C.pdf, id=73, 361.35pt x 216.81pt>
+<use graphics/1_2/Maintenance_Traffic_Peers_C.pdf>
+<graphics/1_2/Maintenance_Traffic_Time_C.pdf, id=74, 361.35pt x 216.81pt>
+<use graphics/1_2/Maintenance_Traffic_Time_C.pdf> [6 <./graphics/1_2/DHTSize_Pe
+ersSort_C.pdf> <./graphics/1_2/Maintenance_Traffic_Peers_C.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Maintenance_Traffic_Peers_C.pdf):
+ PDF inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_2/Maintenance_Traffic_Time_C.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Maintenance_Traffic_Time_C.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
+>] <graphics/1_2/Search_Duration_A_1_0.pdf, id=94, 361.35pt x 216.81pt>
+<use graphics/1_2/Search_Duration_A_1_0.pdf>
+<graphics/1_2/Search_Duration_A_1_2.pdf, id=95, 361.35pt x 216.81pt>
+<use graphics/1_2/Search_Duration_A_1_2.pdf>
+<graphics/1_2/Search_Hops_A_1_0.pdf, id=96, 361.35pt x 216.81pt>
+<use graphics/1_2/Search_Hops_A_1_0.pdf>
+<graphics/1_2/Search_Hops_A_1_2.pdf, id=97, 361.35pt x 216.81pt>
+<use graphics/1_2/Search_Hops_A_1_2.pdf>
+<graphics/1_2/Top5_Traffic_Peers_C_1_0.pdf, id=98, 361.35pt x 216.81pt>
+<use graphics/1_2/Top5_Traffic_Peers_C_1_0.pdf>
+<graphics/1_2/Top5_Traffic_Peers_C_1_2.pdf, id=99, 361.35pt x 216.81pt>
+<use graphics/1_2/Top5_Traffic_Peers_C_1_2.pdf>
+<graphics/1_2c/Top5_Traffic_Peers_C_1_2c.pdf, id=100, 361.35pt x 216.81pt>
+<use graphics/1_2c/Top5_Traffic_Peers_C_1_2c.pdf>
+<graphics/1_0c/Search_Duration_A_1_0c.pdf, id=101, 361.35pt x 216.81pt>
+<use graphics/1_0c/Search_Duration_A_1_0c.pdf>
+<graphics/1_0c/Update_Duration_A.pdf, id=102, 361.35pt x 216.81pt>
+<use graphics/1_0c/Update_Duration_A.pdf>
+<graphics/1_0c/Search_Duration_B_1_0.pdf, id=103, 361.35pt x 216.81pt>
+<use graphics/1_0c/Search_Duration_B_1_0.pdf>
+<graphics/1_0c/Search_Duration_B_1_0c.pdf, id=104, 361.35pt x 216.81pt>
+<use graphics/1_0c/Search_Duration_B_1_0c.pdf>
+<graphics/1_0c/Update_Duration_B.pdf, id=105, 361.35pt x 216.81pt>
+<use graphics/1_0c/Update_Duration_B.pdf>) (./chapter-conclusion.tex [7 <./grap
+hics/1_2/Search_Duration_A_1_0.pdf> <./graphics/1_2/Search_Duration_A_1_2.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Search_Duration_A_1_2.pdf): PDF i
+nclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_2/Search_Hops_A_1_0.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Search_Hops_A_1_0.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+> <./graphics/1_2/Search_Hops_A_1_2.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Search_Hops_A_1_2.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+>]) (./HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.bbl [8 <./graph
+ics/1_2/Top5_Traffic_Peers_C_1_0.pdf> <./graphics/1_2/Top5_Traffic_Peers_C_1_2.
+pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2/Top5_Traffic_Peers_C_1_2.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_2c/Top5_Traffic_Peers_C_1_2c.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_2c/Top5_Traffic_Peers_C_1_2c.pdf): 
+PDF inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_0c/Search_Duration_A_1_0c.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_0c/Search_Duration_A_1_0c.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_0c/Update_Duration_A.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_0c/Update_Duration_A.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>])
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[9 <./graphics/1_0c/Search_Duration_B_1_0.pdf> <./graphics/1_0c/Search_Duration
+_B_1_0c.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_0c/Search_Duration_B_1_0c.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+> <./graphics/1_0c/Update_Duration_B.pdf
+
+pdfTeX warning: pdflatex (file ./graphics/1_0c/Update_Duration_B.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>] (./HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.aux) )
+(see the transcript file for additional information){/usr/share/texlive/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/t
+ype1/public/tex-gyre/qhvr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
+mes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf 
+(9 pages, 501103 bytes).
+Transcript written on HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.
+log.

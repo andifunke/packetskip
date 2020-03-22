@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+	<!-- Variables -->
+	<Default>
+		<!-- Basics -->
+		<Variable name="seed" value="0" />
+		<Variable name="size" value="1000" />
+		<Variable name="sizeOthers" value="760" />
+		<Variable name="sizeSeeker" value="240" />
+		<Variable name="startTime" value="0m" />
+		<Variable name="finishTime" value="330m" />
+		<Variable name="NetLayer" value="SIMPLE" /> <!-- possible values: MOD, MOD-NoPacketLoss, GNP, SIMPLE, MOBILE -->
+		<Variable name="Overlay" value="Chord" /> <!-- possible values: Chord, Pastry, Can, CentralizedIndex, CentralizedStorage, <*>Chord, Gia, Gnutella06  -->
+		<Variable name="server" value="false" />
+		<Variable name="GUI" value="false" />
+
+		<!-- Churn stuff -->
+		<Variable name="churnEnabled" value="false" /> <!-- specify whether churn is enabled or not  -->
+		<Variable name="ChurnModel" value="Disabled" /> <!-- possible values: Disabled, Kad, Exponential -->
+		<Variable name="ChurnExponentialMeanTime" value="20m" /> <!-- Only for exponential churn models: specify the mean churn time -->
+		<Variable name="ChurnStart" value="161m" />	<!-- specify when the churn generator starts to send nodes offline and back online -->
+		<Variable name="ChurnFinish" value="330m" /> <!-- specify when the churn generator shall stop -->
+
+		<!-- Skipgraph service -->
+		<Variable name="MessageTimeout" value="2s" /> <!-- message timeout for the communication manager -->
+		<!-- ElementTable size and behavior -->
+		<Variable name="ElementTableMaxSize" value="50" />
+		<Variable name="ElementTableMinSize" value="10" />
+		<Variable name="LoadBalancing" value="true" /> <!-- should always be true -->
+		<Variable name="Headroom" value="0.1" />
+		<!-- actives Time To Live and sets parameter -->
+		<Variable name="ChurnScenario" value="false" />
+		<Variable name="PurgeTolerance" value="350ms" /> <!-- milliseconds -->
+		<Variable name="IgnoreExpiredResults" value="true" />
+		<!-- set the internal search algorithm -->
+		<Variable name="ParallelSearch" value="true" /> <!-- false: use serial search approach (slower) -->
+		<!-- tries to optimize the contact levels - experimental -->
+		<Variable name="OptimizeLevelPrefix" value="true" />
+		<!-- log service -->
+		<Variable name="LogSearch" value="false" />
+		<Variable name="LogUpdate" value="false" />
+		<Variable name="LogJoin" value="false" />
+		<Variable name="LogMaintenance" value="false" />
+		<Variable name="LogLeave" value="false" />
+		<Variable name="PrintNodesWhileLogging" value="false" />
+		<Variable name="PlotDotFiles" value="false" />
+
+		<!-- CapacityManager application -->
+		<Variable name="PseudoChurn" value="false" /> <!-- activates a behavor where the application abruptly stops data updates -->
+		<Variable name="PseudoChurnStart" value="161m" />
+		<Variable name="MaxCapacity" value="10000" /> <!-- maximal value for every capacity -->
+		<Variable name="SmoothCapacityChange" value="true" /> 
+		<Variable name="StoreCapacityInterval" value="10m" />
+		<Variable name="SearchCapacityInterval" value="5m" /> 
+		<Variable name="kSearch" value="8" /> <!-- k>0 ? k=value : k==0 ? full search : random random(k) or full search -->
+		<!-- log application -->
+		<Variable name="LogApplication" value="false" />
+	</Default>
+
+
+
+	<!-- Description -->
+	<Description>
+		Evaluating a skip graph based capacity indexing and search.
+	</Description>
+
+
+
+	<!-- SimulatorCore: Simulator core - do not touch this :) -->
+	<SimulatorCore class="org.peerfact.impl.simengine.Simulator"
+		static="getInstance"
+		simpleScheduler="true"
+		seed="$seed"
+		finishAt="$finishTime" />
+
+
+	<!-- NetLayer: Lots of if cases - load the NetLayer you specified in the variable NetLayer in default variables -->
+	<IfEqualStr arg0="$NetLayer" arg1="MOD">
+		<xi:include href="../../../includes/network/ModularNetLayer.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$NetLayer" arg1="MOD-NoPacketLoss">
+		<xi:include href="../../../includes/network/ModularNetLayer-NoPacketLoss.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$NetLayer" arg1="GNP">
+		<xi:include href="../../../includes/network/GnpNetLayer.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$NetLayer" arg1="SIMPLE">
+		<xi:include href="../../../includes/network/SimpleNetLayer.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$NetLayer" arg1="MOBILE">
+		<xi:include href="../../../includes/network/MobileNetLayer.xml" />
+	</IfEqualStr>
+
+
+
+	<!-- TransLayer: load your transport layer. The default one is fine -->
+	<xi:include href="../../../includes/transport/DefaultTransLayer.xml" />
+
+
+
+	<!-- Overlay: Lots of if cases - load the Overlay you specified in the variable Overlay in default variables  -->
+	<IfEqualStr arg0="$Overlay" arg1="Can">
+		<xi:include href="../../../includes/overlay/dht/can/CanNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="CentralizedIndex">
+		<xi:include href="../../../includes/overlay/dht/centralizedIndex/centralizedIndexNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="CentralizedStorage">
+		<xi:include href="../../../includes/overlay/dht/centralizedStorage/centralizedStorageNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="AdaptiveChord">
+		<xi:include href="../../../includes/overlay/dht/chord/AdaptiveChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="CaReChord">
+		<xi:include href="../../../includes/overlay/dht/chord/CaReChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="Chord">
+		<xi:include href="../../../includes/overlay/dht/chord/ChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="EpiChord">
+		<xi:include href="../../../includes/overlay/dht/chord/EpiChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="MaliciousChord">
+		<xi:include href="../../../includes/overlay/dht/chord/MaliciousChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="ReChord">
+		<xi:include href="../../../includes/overlay/dht/chord/ReChordNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="Pastry">
+		<xi:include href="../../../includes/overlay/dht/pastry/PastryNode.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="Gia">
+		<xi:include href="../../../includes/overlay/unstructured/Gia.xml" />
+	</IfEqualStr>
+	<IfEqualStr arg0="$Overlay" arg1="Gnutella06">
+		<xi:include href="../../../includes/overlay/unstructured/Gnutella06.xml" />
+	</IfEqualStr>
+
+
+
+	<!-- start CapacityManager application -->
+	<Application
+			class="org.peerfact.impl.application.capacitymanager.CapacityManagerApplicationFactory"
+			PseudoChurn="$PseudoChurn"
+			MaxCapacity="$MaxCapacity"
+			SmoothCapacityChange="$SmoothCapacityChange"
+			StoreCapacityInterval="$StoreCapacityInterval"	
+			SearchCapacityInterval="$SearchCapacityInterval"
+			KSearch="$kSearch"
+			Logging="$LogApplication"
+			/>
+
+
+
+	<!-- start SkipToCapacity service -->
+	<Service
+			class="org.peerfact.impl.service.skipgraph.SkipgraphServiceFactory"
+			MessageTimeout="$MessageTimeout"
+			ElementTableMaxSize="$ElementTableMaxSize"
+			ElementTableMinSize="$ElementTableMinSize"
+			LoadBalancing="$LoadBalancing"
+			Headroom="$Headroom"
+			ChurnScenario="$ChurnScenario"
+			PurgeTolerance="$PurgeTolerance"
+			ParallelSearch="$ParallelSearch"
+			OptimizeLevelPrefix="$OptimizeLevelPrefix"
+			LogSearch="$LogSearch"
+			LogUpdate="$LogUpdate"
+			LogJoin="$LogJoin"
+			LogMaintenance="$LogMaintenance"
+			LogLeave="$LogLeave"
+			PrintNodesWhileLogging="$PrintNodesWhileLogging"
+			PlotDotFiles="$PlotDotFiles"
+			/>
+
+
+
+	<!-- ReplicationService: IdealReplication  -->
+	<ReplicationService
+			class="org.peerfact.impl.service.dhtstorage.idealreplication.IdealReplicationDHTServiceFactory"/>
+
+
+
+	<!-- Monitor: use our own monitor and a bunch of analyzer to analyze respectively visualize the outcome of this simulation scenario.
+		The class attribute is our Monitor-implementing class in the analyzer package.
+		Start and Stop indicate the start and stop of this monitoring instance. 
+		The default behavior is to monitor the whole simulation (from startTime till finishTime). -->
+	<Monitor
+		class="org.peerfact.impl.service.skipgraph.analyzer.DefaultSkipgraphMonitor"
+		start="$startTime"
+		stop="$finishTime">
+		
+		<!-- In general: Here, all analyzer are added which you want to use for your simulation. 
+		In the code: setAnalyzer(Analyzer) is called for each tag. -->
+		
+		<!-- This is the dht overlay analyzer for plots about the count, dht objects per peer, dht size etc. -->
+		<Analyzer class="org.peerfact.impl.analyzer.DefaultDHTOverlayAnalyzer" />
+		
+		<!-- This analyzer is used to analyzer your Operations. TopX: get the top 5 operations. 
+		ClassSelection: inspect the following operations in more detail. -->
+		<Analyzer class="org.peerfact.impl.analyzer.DefaultOperationAnalyzer" 
+			TopX="5"
+			ClassSelection="
+				org.peerfact.impl.service.skipgraph.operations.UpdateOperation,
+				org.peerfact.impl.service.skipgraph.operations.SearchQueryOperation,
+				org.peerfact.impl.service.skipgraph.operations.SearchResultSerialOperation,
+				org.peerfact.impl.service.skipgraph.operations.SearchResultParallelOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.HandshakeOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.JoinLevelNotifyOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.JoinLevelReplyOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.JoinLevelRequestOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.JoinRequestOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.ReplaceContactsOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.LoadBalancingOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.UpdateForwardingOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.RangeAdjustmentOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.SearchForwardingSerialOperation,
+				org.peerfact.impl.service.skipgraph.node.operations.SearchForwardingParallelOperation
+				" />
+				
+		<!-- Transport Layer analyzer -->
+		<Analyzer class="org.peerfact.impl.analyzer.DefaultTransAnalyzer" />
+		
+		<!-- Net Layer analyzer with topX = 5 messages which consumed the most costs. 
+		Also: in the class selection string you can enter which messages you want to track 
+		separately in a plot. Pattern: separated by a comma: <class identifying 
+		this type of message(s)> -->
+	 	<Analyzer class="org.peerfact.impl.analyzer.SelectionNetAnalyzer"
+	 		TopX="5"
+	 		ClassSelection="
+	 			org.peerfact.impl.service.skipgraph.messages.DefaultACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.DefaultNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.JoinRequestMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.JoinRequestACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.JoinRequestNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.SearchQueryMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.SearchQueryACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.SearchQueryNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.SearchResultParallelMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.UpdateMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.UpdateACKMessage,
+	 			org.peerfact.impl.service.skipgraph.messages.UpdateNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.HandshakeMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelRequestMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelRequestACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelRequestNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelNotifyMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelReplyMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelReplyACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.JoinLevelReplyNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RangeAdjustmentMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RangeAdjustmentACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RangeAdjustmentNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RemainingSizeMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RemainingSizeACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.RemainingSizeNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.ReplaceContactsMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.ReplaceContactsACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.ReplaceContactsNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.SearchForwardingParallelMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.SearchForwardingACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.SearchForwardingNACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.UpdateForwardingMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.UpdateForwardingACKMessage,
+	 			org.peerfact.impl.service.skipgraph.node.messages.UpdateForwardingNACKMessage,
+	 			" />
+	 			
+	 	<!-- This is the skipgraph analyzer which is analyzing the behavior of the skipgraph service -->
+	 	<Analyzer class="org.peerfact.impl.service.skipgraph.analyzer.DefaultSkipgraphAnalyzer"/>
+	 	
+	 	<!-- This is the skipgraphNode analyzer which is analyzing statistics of the skipgraph nodes -->
+	 	<Analyzer class="org.peerfact.impl.service.skipgraph.analyzer.DefaultSkipgraphNodeAnalyzer"/>
+	 	
+	 	<!-- This gem here analyzes the traffic going through our CommunicationManager. 
+	 	In the CategoryClassMapping string you can enter a category to categorize messages in your plots.
+	 	Pattern: <category>:<class or interface identifying this type of message(s)> -->
+		<Analyzer class="org.peerfact.impl.util.communicationmanager.DefaultCommunicationManagerTrafficAnalyzer"
+			CategoryClassMapping="
+				updates:org.peerfact.impl.service.skipgraph.messages.BundledUpdateCategory,
+	 			maintenance:org.peerfact.impl.service.skipgraph.messages.BundledMaintenanceCategory,
+	 			search:org.peerfact.impl.service.skipgraph.messages.BundledSearchCategory,
+				"/>
+			
+		<!-- The Memory- and TimeUsageAnalyzer are analyzer for the simulator (physically memory usage and real 
+		time needed to simulate)  -->
+		<Analyzer class="org.peerfact.impl.analyzer.MemoryUsageAnalyzer" interval="1m" />	
+		<Analyzer class="org.peerfact.impl.analyzer.TimeUsageAnalyzer" interval="1m" />
+
+		<!-- Some other Analyzer. Just uncomment them in order to make them available in the simulation. -->
+		<!-- 	<Analyzer class="org.peerfact.impl.analyzer.DefaultChurnAnalyzer" /> -->
+		<!-- 	<Analyzer class="org.peerfact.impl.analyzer.DefaultConnectivityAnalyzer" /> -->
+		<!-- 	<Analyzer class="org.peerfact.impl.analyzer.DefaultKBROverlayAnalyzer" /> -->
+	</Monitor>
+	
+
+
+
+
+	<!-- HostBuilder: build up groups of nodes with their number of members and the layers (in top bottom order!) 
+	each member must load. 	Additionally: specify properties for each group of nodes. These properties are set in 
+	the HostProperties file. -->
+	<HostBuilder
+		class="org.peerfact.impl.scenario.DefaultHostBuilder"
+		experimentSize="$size">
+
+		<Group id="seeker" groupID="World" size="$sizeSeeker">
+			<NetLayer />
+			<TransLayer />
+			<Overlay />
+			<ReplicationService />
+			<Service />
+			<Application />
+			<Properties enableChurn="$churnEnabled" />
+			<Properties enableIsolation="false" />
+		</Group>
+
+		<Group id="others" groupID="World" size="$sizeOthers">
+			<NetLayer />
+			<TransLayer />
+			<Overlay />
+			<ReplicationService />
+			<Service />
+			<Application />
+			<Properties enableChurn="$churnEnabled" />
+			<Properties enableIsolation="false" />
+		</Group>
+
+	</HostBuilder>
+
+
+
+
+	<!-- Exponential ChurnGenerator and model -->
+	<IfEqualStr arg0="$ChurnModel" arg1="Exponential">
+		<ChurnGenerator
+				class="org.peerfact.impl.churn.DefaultChurnGenerator"
+				start="$ChurnStart"
+				stop="$ChurnFinish">
+			<ChurnModel
+					class="org.peerfact.impl.churn.model.ExponentialChurnModel"
+					churnFactor="0.1"
+					meanSessionLength="$ChurnExponentialMeanTime" />
+		</ChurnGenerator>
+	</IfEqualStr>
+
+	<!-- Kad ChurnGenerator and model -->
+	<IfEqualStr arg0="$ChurnModel" arg1="Kad">
+		<ChurnGenerator
+				class="org.peerfact.impl.churn.DefaultChurnGenerator"
+				start="$ChurnStart"
+				stop="$ChurnFinish">
+			<ChurnModel
+					class="org.peerfact.impl.churn.model.KadChurnModel" />
+		</ChurnGenerator> />
+	</IfEqualStr>
+
+
+	<!-- Provides a central access for the Analyzers to calculate statistics over all nodes -->
+	<Oracle class="org.peerfact.impl.util.oracle.GlobalOracle" />
+
+
+	<!-- Load an action.dat-File that consists a list of function calls on a group of hosts to start actions in your experiment. -->
+	<!-- TODO -->
+	<Scenario class="org.peerfact.impl.scenario.CSVScenarioFactory"
+		actionsFile="config/scenarios/tests/packetSkip/SkipgraphSimulationScenario.dat"
+		componentClass="org.peerfact.impl.application.capacitymanager.CapacityManagerApplication"
+		additionalClasses="org.peerfact.impl.service.skipgraph.SkipgraphService; org.peerfact.api.overlay.JoinLeaveOverlayNode"/>		<!-- Needed for joining the overlay -->
+
+
+</Configuration>

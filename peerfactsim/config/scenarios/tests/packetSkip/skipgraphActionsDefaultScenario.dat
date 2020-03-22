@@ -1,0 +1,7 @@
+# Index and Search Capacity Application Action File
+
+all 1m-20m JoinLeaveOverlayNode:join callback
+all 31m-40m SkipgraphService:init
+all 41m-60m CapacityManagerApplication:startStore
+all 51m-70m CapacityManagerApplication:startSearch
+all 180m CapacityManagerApplication:stopSearch
