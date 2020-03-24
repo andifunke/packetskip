@@ -71,14 +71,14 @@ The implementation is composed of two parts running on each node a network:
 
 #### The Capacity Manager
 
-The capacity manager is an application that regularly propagates a node's capacities to the service
-and which also can send queries to the index to retrieve nodes with certain properties.
+The capacity manager is an application that regularly propagates the node's capacities to the service
+and is also capable of sending queries to the index to retrieve other nodes with certain properties.
 The capacity manager is just an example for an application that can leverage PacketSkip.
    
    
 #### The PacketSkip Service
 
-While every node in a network runs the PacketSkip service, not all nodes are necessarily part of the skip graph.
+While every node in a network may run the PacketSkip service, not all nodes are necessarily part of the skip graph.
 In fact skip graph nodes are virtual nodes and one physical network node may host several skip graph nodes with
 a certain probability.
 
@@ -88,8 +88,7 @@ The ratio of network nodes and skip graph nodes is determined by the following f
 2. data points in the index
 3. dimensionality of each data point
 
-The tasks managed by the PacketSkip service are therefore slightly different, whether a node is part of 
-the skip graph or just using querying the index.
+The tasks managed by the PacketSkip service are different for physical and virtual nodes.
 
 **Tasks for network nodes:**
 
@@ -109,14 +108,15 @@ the skip graph or just using querying the index.
 #### PeerfactSim
 
 [PeerfactSim](https://peerfact.com/) is an open source peer-to-peer simulator for scientific research written
-in Java. PacketSkip is implemented a an addon to PeerfactSim using it's underlying P2P overlay implementations
-and simulated network traffic including churn behaviour.
+in Java. PacketSkip is implemented as an addon to PeerfactSim using it's underlying P2P overlay implementations
+and simulated network traffic including probabilistic churn behaviour.
 
-This repository contains only the code for PacketSkip and the Capacity Manager. It can not be run on its own.
+This repository contains only the code for the PacketSkip service and the Capacity Manager.
+It can not be run on its own.
 
 PacketSkip was developed on a fork of PeerfactSim that is maintained by the 
 [Technology of Social Networks Lab](https://www.tsn.hhu.de/en.html) of the University of Düsseldorf.
-It may not work be fully compatible with the publicly available branch.
+It may not be fully compatible with the publicly available branch.
  
 
 
