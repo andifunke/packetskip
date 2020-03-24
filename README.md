@@ -2,7 +2,7 @@
 
 ## Skip Graph for Multidimensional Search in Structured Peer-to-Peer Systems
 
-PacketSkip describes an efficient distributed indexing structure for structured peer-to-peer systems and IoT 
+PacketSkip describes an efficient distributed indexing service for structured peer-to-peer systems and IoT 
 networks with similar properties. PacketSkip has a couple of unique features:
 
 *  Skip Graph based
@@ -43,7 +43,7 @@ PackSkip is described in details in the following two papers:
 
 * **A. Funke**: *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*.
   Course paper for "Opportunistic and Peer-to-Peer Networks" (HHU 2017)  
-  [paper/HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf](paper/HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf)
+  [HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf](paper/HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf)
 
   **Abstract:**  
   *In modern miscellaneous peer-to-peer (p2p) networks, combining desktop computers and mobile devices, the homogeneous 
@@ -62,9 +62,62 @@ PackSkip is described in details in the following two papers:
 
 ### Implementation
 
-description coming soon
+The implementation is composed of two parts running on each node a network:
+
+1. The PacketSkip service
+
+2. The Capacity Manager
+
+
+#### The Capacity Manager
+
+The capacity manager is an application that regularly propagates a node's capacities to the service
+and which also can send queries to the index to retrieve nodes with certain properties.
+The capacity manager is just an example for an application that can leverage PacketSkip.
+   
+   
+#### The PacketSkip Service
+
+While every node in a network runs the PacketSkip service, not all nodes are necessarily part of the skip graph.
+In fact skip graph nodes are virtual nodes and one physical network node may host several skip graph nodes with
+a certain probability.
+
+The ratio of network nodes and skip graph nodes is determined by the following factors:
+
+1. size of the local index tables
+2. data points in the index
+3. dimensionality of each data point
+
+The tasks managed by the PacketSkip service are therefore slightly different, whether a node is part of 
+the skip graph or just using querying the index.
+
+**Tasks for network nodes:**
+
+* sending messages to the skip graph (updates and queries)
+* support for bootstrapping 
+* listening for join requests
+
+**Tasks for skip graph nodes:**
+
+* maintaining an index table
+* responding to and greedily forwarding update and query messages
+* locally maintaining the skip graph by composing and forwarding join and maintenance messages
 
 ![img/final.png](img/final.png)
+
+
+#### PeerfactSim
+
+[PeerfactSim](https://peerfact.com/) is an open source peer-to-peer simulator for scientific research written
+in Java. PacketSkip is implemented a an addon to PeerfactSim using it's underlying P2P overlay implementations
+and simulated network traffic including churn behaviour.
+
+This repository contains only the code for PacketSkip and the Capacity Manager. It can not be run on its own.
+
+PacketSkip was developed on a fork of PeerfactSim that is maintained by the 
+[Technology of Social Networks Lab](https://www.tsn.hhu.de/en.html) of the University of Düsseldorf.
+It may not work be fully compatible with the publicly available branch.
+ 
 
 
 ### Measurement Data
