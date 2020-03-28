@@ -123,7 +123,7 @@ public class DotFileBuilder {
 
 	@Deprecated
 	public static void add(BigInteger peerID, SkipgraphNode node) {
-		//globalNodeList.add(new NodeTuple(peerID, node));
+		globalNodeList.add(new NodeTuple(peerID, node));
 	}
 	
 	public static void addNode(BigInteger peerID, SkipgraphNode node) {
@@ -234,9 +234,7 @@ public class DotFileBuilder {
 		code = sbMain.toString();
 		writeFile(FILE_NAME+"_"+getFileCounter());
 		
-		//globalNodeList.clear();
 		graphPerLevelAndPrefixMap.clear();
-		//nodeIdToCountId.clear();
 	}
 
 
@@ -457,7 +455,6 @@ public class DotFileBuilder {
 			try {
 				Runtime r = Runtime.getRuntime();
 				r.exec(String.format("dot -Tpng %s -o %s", filename, outfile));
-				//r.exec("xdg-open " + outfile);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

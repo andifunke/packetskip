@@ -159,7 +159,6 @@ public class ServiceOperationManager {
 	public boolean deliver(AbstractSkipgraphServiceMessage message) {
 		int operationID = message.getOperationID();
 		if (addressableOperations.containsKey(operationID)) {
-			//log("delivering to <" + operationMap.get(operationID) + ">\n"+message);
 			return addressableOperations.get(operationID).deliverMessage(message);
 		}
 
@@ -170,13 +169,11 @@ public class ServiceOperationManager {
 
 	
 	public void executeSearchSerialResult(SearchResultSerialMessage message) {
-		//log("executing SearchResult. operationID="+message.getOperationID());
 		deliver(message);
 	}
 	
 	
 	public void executeSearchParallelResult(SearchResultParallelMessage message) {
-		//log("executing SearchResult. operationID="+message.getOperationID());
 		deliver(message);
 	}
 	

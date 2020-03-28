@@ -200,22 +200,12 @@ public class SkipgraphService extends AbstractService implements SkipgraphServic
 		return running;
 	}
 	
-	/*
-	public EntryPointSimple getEntryPoint() {
-		if (hasEntryNode()) {
-			return new EntryPointSimple(nodeID, peer);
-		}
-	}
-	*/
-
-	
 	public SkipgraphNodeController getNodeControllerForKey(BigInteger nodeID, AbstractSkipgraphNodeRequestMessage message) {
 		SkipgraphNodeController nodeController = null;
 		try {
 			DHTKey<?> key = getLocalNode().getNewOverlayKey(nodeID);
 			// is peer responsible for key?
 			if (getLocalNode().isRootOf(key)) {
-				//log("responsible for nodeID="+SGUtil.formatID(nodeID));
 				// yes: responsible -> get node!
 				nodeController = getSkipgraphNodeControllers().get(nodeID.toString());
 				// nodeController for nodeID not available? -> get node from DHT and build new controller
@@ -241,8 +231,7 @@ public class SkipgraphService extends AbstractService implements SkipgraphServic
 					}
 					else {
 						// Alternative 2 for getting the node (official approach):
-						//if (SkipgraphServiceConstants.LOG_DHT)
-							log("no nodeController available. Getting node from local DHT for: "+message+" (seed="+Simulator.getSeed()+")");
+						log("no nodeController available. Getting node from local DHT for: "+message+" (seed="+Simulator.getSeed()+")");
 						SkipgraphService service = this;
 						getLocalNode().valueLookup(key, new OperationCallback<DHTObject>() {
 							
@@ -366,7 +355,6 @@ public class SkipgraphService extends AbstractService implements SkipgraphServic
 			List<SkipgraphElement> deleteElements,
 			UpdateCallback updateCallback) 
 	{
-//		log("inputElements="+inputElements+"\n"+"deleteElements="+deleteElements);
 		// check if there are equal elements in both lists
 		if (!SkipgraphServiceConstants.churnScenario) {
 			// no-churn scenario: don't put equals neither in inputList nor in deleteList
@@ -379,7 +367,6 @@ public class SkipgraphService extends AbstractService implements SkipgraphServic
 			// churn-scenario: leave all in input list (purge!), but remove equals from deleteList
 			deleteElements.removeAll(inputElements);
 		}
-//		log("inputElements="+inputElements+"\n"+"deleteElements="+deleteElements);
 		if (!inputElements.isEmpty() || !deleteElements.isEmpty()) {
 			opManager.callUpdateOperation(inputElements, deleteElements, updateCallback);
 		}
@@ -448,7 +435,7 @@ public class SkipgraphService extends AbstractService implements SkipgraphServic
 	
 	public void printAllSkipgraphNodes() {
 		if (skipgraphNodeControllers.isEmpty()) {
-			//log("no SkipgraphNodes available.");
+			log("no SkipgraphNodes available.");
 		}
 		else {
 			for (Entry<String, SkipgraphNodeController> entry : getSkipgraphNodeControllers().entrySet()) {

@@ -105,15 +105,11 @@ public class ElementTable implements DHTObject, Cloneable {
 		long expirationDate = Simulator.getCurrentTime()
 				- (CapacityManagerApplicationConstants.getStoreCapacityInterval()
 						+SkipgraphServiceConstants.purgeTolerance);
-		//System.out.println("expirationdate="+expirationDate);
-		
+
 		for (SkipgraphElement element : elementList) {
-			//System.out.println("element timestamp="+element.getTimestamp());
 			// in churn scenario: don't send expired elements (experimental)
 			if (SkipgraphServiceConstants.churnScenario && SkipgraphServiceConstants.ignoreExpiredResults) {
-				//System.out.println("churn!");
 				if (element.getTimestamp() < expirationDate) {
-					//System.out.println("expired");
 					continue;
 				}
 			}
@@ -175,12 +171,10 @@ public class ElementTable implements DHTObject, Cloneable {
 		if (!SkipgraphServiceConstants.churnScenario) {
 			if (elementList.contains(element)) {
 				element.confirmInput();
-//				System.out.println(element + " INFO: already in table. not updated");
 				return false;
 			}
 		}
 		if (elementList.remove(element)) {
-//			System.out.println(element + " INFO: already in table. overwriting");
 		}
 		boolean success = elementList.add(element);
 		if (success)
@@ -201,7 +195,6 @@ public class ElementTable implements DHTObject, Cloneable {
 	boolean remove(SkipgraphElement element) {
 		boolean success = elementList.remove(element);
 		element.confirmDelete();
-//		if (!success) {System.out.println(element + " INFO: was not in table");}
 		return success;
 	}
 
@@ -226,27 +219,16 @@ public class ElementTable implements DHTObject, Cloneable {
 						+SkipgraphServiceConstants.purgeTolerance);
 		List<SkipgraphElement> remainingElements = new LinkedList<>();
 
-//		String log = "purging:\n"+this;
-//		log += "before purge: "+this;
-//		log += "current time="+Simulator.getFormattedTime(Simulator.getCurrentTime())
-//				+ ", purge interval="+Simulator.getFormattedTime(purgeInterval)
-//				+ " => expirationDate="+Simulator.getFormattedTime(expirationDate);
-//		
 		for (SkipgraphElement element : elementList) {
-//			log += element+" timestamp="+Simulator.getFormattedTime(element.getTimestamp());
 			if (element.getTimestamp() > expirationDate) {
-//				log += " -> element remains\n";
 				remainingElements.add(element);
 			}
 			else {
-//				log += " -> element purged\n";
 				purged = true;
 			}
 		}
 		elementList = remainingElements;
-//		log += "after purge: "+this;
-		
-//		System.out.println(log);
+
 		return purged;
 	}
 	
@@ -306,7 +288,6 @@ public class ElementTable implements DHTObject, Cloneable {
 	 * @return
 	 */
 	public boolean isBelowElementTablesMinimum(BigDecimal value) {
-		//System.out.println(String.format("%s (value) <= %s (start) ?", value, elementTableRangeStart));
 		boolean ret;
 		if (value == null) {
 			ret = !(rangeStart == null);
@@ -325,7 +306,6 @@ public class ElementTable implements DHTObject, Cloneable {
 	 * @return
 	 */
 	public boolean isAboveElementTablesMaximum(BigDecimal value) {
-		//System.out.println(String.format("%s (value) > %s (end) ?", value, elementTableRangeEnd));
 		boolean ret;
 		if (value == null) {
 			ret = !(rangeEnd == null);
@@ -373,8 +353,6 @@ public class ElementTable implements DHTObject, Cloneable {
 	public ElementTable[] split(double ratio) {
 		ElementTable[] et = new ElementTable[2];
 		sort();
-		//int roundup = 0;
-		//if (size() % ratio > 0) roundup = 1;
 		int splitIndex = (int)Math.ceil( size()*ratio );
 		if (splitIndex >= size()) {
 			splitIndex = size()-1;
@@ -502,13 +480,7 @@ public class ElementTable implements DHTObject, Cloneable {
 			}
 		}
 		
-		//System.out.println("original element table:"+this);
-		//for (int i=0; i<et.length; i++) {
-		//	System.out.println("et["+i+"]:"+et[i]);
-		//}
-		
-		
-		assert (rangeStart.equals(etStart) && 
+		assert (rangeStart.equals(etStart) &&
 				((etEnd == null && rangeEnd == null) || rangeEnd.equals(etEnd)) && 
 				size() == etSize);
 		
@@ -619,11 +591,8 @@ public class ElementTable implements DHTObject, Cloneable {
 			return new ElementTable(cList, cStart, cEnd);
 		}
 		
-//		System.out.println("ElementTable merge failed: no adjacent boundaries.\n"
-//				+ "A: "+A+"\nB: "+B);
 		return null;
 	}
-	
-	
+
 
 }

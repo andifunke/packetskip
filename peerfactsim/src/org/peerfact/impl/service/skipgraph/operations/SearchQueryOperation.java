@@ -119,7 +119,6 @@ public class SearchQueryOperation
 			localContact = getComponent().getLocalContact();
 			tracker = new TrackerCallback();
 			toEntryPoint();
-			//log("send search query="+queries, true);
 		}
 		else {
 			log("not present!");
@@ -338,7 +337,6 @@ public class SearchQueryOperation
 
 	@Override
 	protected void finishOperation(boolean success) {
-		//System.out.println(hopCounter);
 		log("results="+results);
 		// call the callback
 		operationFinished(success);
@@ -354,9 +352,6 @@ public class SearchQueryOperation
 					.addSearchQueryMessageCount(localContact, bootstrapMessages,
 							n_ACKs, forwardingMessages, replyMessages);
 			Set<BigInteger> distinctHops = new LinkedHashSet<>(hops);
-//			if (hops.size() != distinctHops.size()) {
-//				log("hops="+SGUtil.formatIDs(hops)+" size="+hops.size()+", disctinctHops="+SGUtil.formatIDs(distinctHops), true);
-//			}
 			((SkipgraphMonitor)Simulator.getMonitor())
 					.addSearchQueryHopCount(localContact, hops.size(), distinctHops.size());
 			((SkipgraphMonitor)Simulator.getMonitor())

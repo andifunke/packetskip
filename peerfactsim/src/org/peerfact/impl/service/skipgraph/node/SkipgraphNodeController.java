@@ -41,7 +41,6 @@ public class SkipgraphNodeController {
 			return true;
 		
 		if (elements == null || elements.isEmpty()) {
-			//log("validation: no elements");
 			return false;
 		}
 			
@@ -125,11 +124,6 @@ public class SkipgraphNodeController {
 	}
 
 	private void init() {
-		//if (node.getGlobalCountID() == 1 || node.getGlobalCountID() == 5) forceLogging = true;
-//		if (logJoin || logLeave || logMaintenance || forceLogging) {
-//			log("nodeController initialized");
-//			print();
-//		}
 	}
 	
 	/**
@@ -272,8 +266,6 @@ public class SkipgraphNodeController {
 	public boolean update(int operationID, List<SkipgraphElement> inputElements, List<SkipgraphElement> deleteElements) {
 		boolean valid = validate(inputElements) | validate(deleteElements);
 		if (!valid) {
-			//log("\n"+ind1+"the data for input() and delete() is not valid."
-			//		+ "\n"+ind1+"inputElements: "+inputElements+", deleteElements: "+deleteElements);
 			return false;
 		}
 		
@@ -378,11 +370,7 @@ public class SkipgraphNodeController {
 			List<SkipgraphElement> inputElements, 
 			List<SkipgraphElement> deleteElements) {
 		
-		//System.out.println("\n#######################################################\n");
-		//System.out.println("inputElements: "+inputElements);
-		//System.out.println("deleteElements: "+deleteElements);
-
-		/* 
+		/*
 		 * key: nodeID of a contact in the contactTable
 		 * value: UpdateTuple, which is a combination of two lists of SkipgraphElements: for input and for delete
 		*/
@@ -394,7 +382,6 @@ public class SkipgraphNodeController {
 		 * value: the nodeID that belongs to the rangeStart
 		 */
 		TreeMap<BigDecimal, SkipgraphContact> contactRangeMap = getContactTable().getContactRangeMap();
-		//System.out.println("contactRangeMap: "+contactRangeMap);
 
 		if (inputElements != null && !inputElements.isEmpty()) {
 			for (SkipgraphElement element : inputElements) {
@@ -435,7 +422,6 @@ public class SkipgraphNodeController {
 			}
 		}
 		
-		//System.out.println("elementsReturnMap: "+elementsReturnMap);
 		return elementsReturnMap;
 	}
 	
@@ -475,7 +461,6 @@ public class SkipgraphNodeController {
 				log("\n"+ind1+"size="+getElementTable().size()
 						+", max-size="+SkipgraphServiceConstants.getElementTableMaxSize()
 						+" -> table too big -> SPLIT");
-				//printElements();
 			}
 			split();
 		}
@@ -490,18 +475,8 @@ public class SkipgraphNodeController {
 	private boolean flushBuffer() {
 		if (disabled || locked) return false;
 
-//		if (logJoin || logMaintenance || logLeave || forceLogging) {
-//			log("before buffer flush:");
-//			print();
-//		}
-
 		boolean success = update(0, elementBuffer.getInputList(), elementBuffer.getDeleteList());
 		elementBuffer.clear();
-		
-//		if (logJoin || logMaintenance || logLeave || forceLogging) {
-//			log("after buffer flush:");
-//			print();
-//		}
 		
 		return success;
 	}
@@ -522,10 +497,7 @@ public class SkipgraphNodeController {
 		if (disabled) return false;
 
 		if (locked) {
-//			if (logJoin || logMaintenance || logLeave || forceLogging)
-//				log("old element table:\n"+getElementTable());
-			
-			setElementTable(et); 
+			setElementTable(et);
 			getContactTable().updateContacts(getContact());
 			if (updatedPrev != null) {
 				getContactTable().updateContacts(updatedPrev);
@@ -534,17 +506,12 @@ public class SkipgraphNodeController {
 				getContactTable().updateContacts(updatedNext);
 			}
 			
-//			if (logJoin || logMaintenance || logLeave || forceLogging)
-//				log("new element table:\n"+getElementTable());
-			
 			boolean success = unlock();
 			save();
 			oc.callRangeAdjustmentOperation();
 			return success;
 		}
 
-//		if (logJoin || logMaintenance || logLeave || forceLogging)
-//			log("elementTable is unlocked. cannot set new elementTable.");
 		return false;
 	}
 	
@@ -659,20 +626,7 @@ public class SkipgraphNodeController {
 			save();
 		}
 	}
-	// ^ TODO: deleteRedundantMethods v
-	/**
-	 * this method can be important, when two nodes are leaving at the same time 
-	 * sending deprecated replacement contacts
-	 * @param deprecatedNodes
-	 */
-	/*
-	public void cleanLevels(Set<BigInteger> deprecatedNodes) {
-		boolean changed = getContactTable().removeDeprecatedContacts(deprecatedNodes, getContact());
-		changed |= getContactTable().deleteRedundantSelfLinkedLevels();
-		if (changed) save();
-	}
-	*/
-	
+
 	/**
 	 * this combined method avoids unnessecary dht store operations
 	 * @param replacement
@@ -689,17 +643,6 @@ public class SkipgraphNodeController {
 			else
 				changed |= getContactTable().setNextOnLevel(replacement, levelIndex);
 		}
-		
-		// remove excludeID temporarily from deprected set
-		//log ("+*deprecated "+deprecatedNodes);
-		
-		/*
-		Set<BigInteger> tmpDeprecatedNodes = new LinkedHashSet<>(deprecatedNodes);
-		tmpDeprecatedNodes.remove(leavingNodeID);
-		log ("+*deprecated tmp "+tmpDeprecatedNodes);
-		log ("+*deprecated "+deprecatedNodes);
-		changed |= getContactTable().removeDeprecatedContacts(tmpDeprecatedNodes, getContact());
-		*/
 		
 		changed |= getContactTable()
 				.sanitiesLevelWhileExecutingReplaceContact(deprecatedNodes, getContact(), levelIndex);
@@ -744,17 +687,14 @@ public class SkipgraphNodeController {
 			log("extend Element Table");
 			print();
 		}
-		//lock();
 		ElementTable mergedTable = ElementTable.merge(getElementTable(), extension);
 		if (mergedTable != null) {
 			getNode().setElementTable(mergedTable);
 			getContactTable().updateContacts(getContact());
 			save();
-			//unlock();
 			return true;
 		}
 		
-		//unlock();
 		return false;
 	}
 	

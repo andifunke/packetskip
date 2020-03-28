@@ -87,17 +87,6 @@ public class EntryPoint implements DHTObject, Comparable<EntryPoint>, Cloneable 
 		return 0;
 	}
 
-	/*
-	public boolean equals(EntryPoint ext) {
-		boolean equal = true;
-		equal &= this.node.equals(ext.node);
-		equal &= this.peer.equals(ext.peer);
-		equal &= this.timestamp == ext.timestamp;
-		return equal;
-	}
-	*/
-	
-	
 
 	/**
 	 * in bytes

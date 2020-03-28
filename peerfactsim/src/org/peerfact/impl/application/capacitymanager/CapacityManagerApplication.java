@@ -130,8 +130,6 @@ public class CapacityManagerApplication extends AbstractApplication {
 		setNewCapacityValues();
 
 		// schedule periodic operations
-//		storeCapacitiesPeriodically(0l);
-//		searchCapacitiesPeriodically(5*Simulator.MINUTE_UNIT + 30*Simulator.SECOND_UNIT);
 		storeCapacitiesPeriodically(0l);
 		searchCapacitiesPeriodically(10*Simulator.MINUTE_UNIT + 30*Simulator.SECOND_UNIT);
 	}
@@ -185,7 +183,6 @@ public class CapacityManagerApplication extends AbstractApplication {
 	public void setNewCapacityValues() {
 		// generate some dummy capacities for the local node
 		for (Entry<AvailableCapacities, SingleCapacity<Integer>> singleCap : generateRandomCapacities().entrySet()) {
-			//System.out.println(singleCap.getKey() + ":"+singleCap.getValue());
 			getHost().getProperties().addMetric(singleCap.getValue());
 		}
 	}
@@ -228,14 +225,6 @@ public class CapacityManagerApplication extends AbstractApplication {
 		for (SingleCapacity<Integer> updatedCapacity : updatedCapacities) {
 			getHost().getProperties().addMetric(updatedCapacity);
 		}
-//		if (skipgraphService.getLocalContact().getPeerID().toString()
-//				.equals("744933767821548725789259326314360885897197869051")) {
-//			String logStr = "";
-//			for (AvailableCapacities cap : AvailableCapacities.values()){
-//				logStr += "\n"+getHost().getProperties().getLocalMetricFor(cap);
-//			}
-//			log(logStr, true);
-//		}
 	}
 	
 
@@ -531,12 +520,7 @@ public class CapacityManagerApplication extends AbstractApplication {
 			rangeEnd = null;
 		}
 		int maxNumberOfValues = 0;
-		/* deprecated:
-		int maxNumberOfValues = rand.nextInt(10);
-		*/
-		
+
 		return new SearchQuery(cap, rangeStart, rangeEnd, maxNumberOfValues);
 	}
-	
-	
 }

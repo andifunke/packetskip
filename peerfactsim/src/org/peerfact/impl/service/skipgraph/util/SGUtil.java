@@ -110,8 +110,6 @@ public class SGUtil {
 	 * @return a BigInteger hash value that is used as on overlay ID for an entry point 
 	 */
 	public static BigInteger getRandomBootstrapID() {
-//		System.out.println("numberOfnodes="+SkipgraphNode.getCurrentNumberOfNodes()
-//				+" @ "+Simulator.getFormattedTime(Simulator.getCurrentTime()));
 		int random = Simulator.getRandom().nextInt(SkipgraphNode.getCurrentNumberOfNodes());
 		return HashToolkit.getSHA1Hash("entry"+random);
 	}

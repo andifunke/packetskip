@@ -87,8 +87,6 @@ public interface SkipgraphServiceInterface extends Service {
 	/* ***********
 	 * messaging *
 	 *********** */
-	//public void sendMessage(MessageOperation messageOperation, OperationCallback<?> callback);
-
 	public ApplicationContact getLocalContact();
 	
 	/* ***********

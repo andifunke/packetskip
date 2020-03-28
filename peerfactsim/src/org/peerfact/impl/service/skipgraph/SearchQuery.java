@@ -148,7 +148,6 @@ public class SearchQuery implements DHTObject, Comparable<SearchQuery>, Cloneabl
 				+ rangeStart + ", "
 				+ rangeEnd 
 				+ (openRangeEnd ? ") " : "] ")
-				//+ "k=" + maxNumberOfValues + ">"
 				;
 	}
 	

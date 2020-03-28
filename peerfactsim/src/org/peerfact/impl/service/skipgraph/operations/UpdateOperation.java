@@ -30,9 +30,7 @@ import org.peerfact.impl.util.communicationmanager.ApplicationContact;
 public class UpdateOperation extends
 		AbstractSkipgraphServiceOperation<String> {
 	
-//	public static final Set<Integer> timeouts = new LinkedHashSet<>();
 
-	
 	/* *******************************************
 	 ****************** FIELDS *******************
 	 ******************************************* */
@@ -79,18 +77,6 @@ public class UpdateOperation extends
 		this.deleteElements = deleteElements;
 
 		setLogging(SkipgraphServiceConstants.logUpdate);
-//		setLogging(true);
-		/*
-		if (timeouts.isEmpty()) {
-			timeouts.add(10768);
-			//timeouts.add(10775);
-			//timeouts.add(10794);
-			//timeouts.add(10804);
-			//timeouts.add(10876);
-			//timeouts.add(10877);
-		}
-		if (timeouts.contains(getOperationID())) setLogging(true);
-		*/
 	}
 
 
@@ -165,10 +151,6 @@ public class UpdateOperation extends
 				}
 			}
 			
-//			if (getComponent().getLocalContact().getPeerID().toString()
-//					.equals("744933767821548725789259326314360885897197869051")) {
-//				logFull("operation started @ "+Simulator.getFormattedTime(Simulator.getCurrentTime()), true);
-//			}
 			logFull("executing.");
 			toEntryPoint();
 		}
@@ -271,9 +253,6 @@ public class UpdateOperation extends
 						.addUpdateTimeout(localContact);
 			}
 			if (success) {
-//				log("startTime="+Simulator.getFormattedTime(startTime)
-//						+", firstConfirmation="+Simulator.getFormattedTime(firstConfirmationTimestamp)
-//						+", lastConfirmation="+Simulator.getFormattedTime(lastConfirmationTimestamp), false);
 				log("duration="+Simulator.getFormattedTime(Simulator.getCurrentTime()-startTime));
 				((SkipgraphMonitor)Simulator.getMonitor())
 						.addUpdateDurationFirst(localContact, firstConfirmationTimestamp-startTime);
@@ -330,6 +309,5 @@ public class UpdateOperation extends
 		}
 		
 	}
-	
 	
 }

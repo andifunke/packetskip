@@ -60,8 +60,6 @@ public class CapacityManagerApplicationFactory implements ComponentFactory {
 					+ "the Capacity Manager Application because the SkipgraphService is not loaded.");
 		}
 		else {
-			//String groupID = host.getProperties().getGroupID();
-			//System.out.println("Application for " + groupID);
 			return new CapacityManagerApplication(host, (SkipgraphServiceInterface)loadedService);
 		}
 	}

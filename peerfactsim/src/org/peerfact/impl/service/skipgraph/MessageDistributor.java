@@ -138,8 +138,7 @@ public class MessageDistributor implements AppMessageHandlerInterface {
 
 				// messages to the service itself
 				if (message instanceof PingMessage) {
-					//service.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ PING @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-					responseMsg = new PongMessage(message.getReceiver(), message.getSender(), 
+					responseMsg = new PongMessage(message.getReceiver(), message.getSender(),
 							message.getOperationID());
 				}
 				else if (message instanceof SearchResultSerialMessage) {

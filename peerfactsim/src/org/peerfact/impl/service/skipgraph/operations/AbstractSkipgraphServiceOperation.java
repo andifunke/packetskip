@@ -90,8 +90,6 @@ public abstract class AbstractSkipgraphServiceOperation<S> extends AbstractSkipg
 				if (op.getResult() instanceof EntryPointSimple) {
 					log("ENTRY POINT: successfully looked up the dht object: "
 							+op.getResult()+" for bootstrapID: "+SGUtil.formatID(lastBootstrapID));
-					// TODO: try ApplicationContact from EntryPointSimple first instead of new ApplicationContact from nodeID
-					//BigInteger entryID = ((EntryPointSimple)op.getResult()).getNodeID();
 					ApplicationContact entryPoint = ((EntryPointSimple)op.getResult()).getPeer();
 					sendMessage(buildMessage(entryPoint));
 				}
