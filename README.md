@@ -26,11 +26,11 @@ applications for data with an ordinal sequence.
 PacketSkip is described in details in the following two papers:
 
 * **A. Disterhöft, A. Funke, K. Graffi**: *PacketSkip: Skip Graph for Multidimensional Search in Structured
-  Peer-to-Peer Systems*. IEEE 11th International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2017)  
-  https://ieeexplore.ieee.org/document/8064026
+  Peer-to-Peer Systems*.  
+  IEEE 11th International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2017)  
 
   **Abstract:**  
-  *The Internet is ubiquitous and nodes participating in it are becoming increasingly diverse and heterogeneous.
+  > The Internet is ubiquitous and nodes participating in it are becoming increasingly diverse and heterogeneous.
   Especially is this true in decentralized, overlay-based networks, which traditionally build upon the infrastructure
   of the Internet. An ability to search for nodes with specific capabilities becomes of growing interest, for example,
   to support the node capacity discovery in large scale, distributed networks, such as in peer-to-peer systems. With
@@ -39,14 +39,15 @@ PacketSkip is described in details in the following two papers:
   high dimensional range searches for peers and their dynamic capacities. PacketSkip provides a very high search
   performance, also in comparison to other approaches, as well as low update and maintenance costs. Evaluations show
   that update and search durations are low and well scalable. Even in dynamic systems, its inner graph structure remains
-  robust and stable.*
+  robust and stable.
+  >  
+  > → https://ieeexplore.ieee.org/document/8064026
 
-* **A. Funke**: *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*.
+* **A. Funke**: *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*.  
   Course paper for "Opportunistic and Peer-to-Peer Networks" (HHU 2017)  
-  [HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf](paper/HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf)
 
   **Abstract:**  
-  *In modern miscellaneous peer-to-peer (p2p) networks, combining desktop computers and mobile devices, the homogeneous
+  > In modern miscellaneous peer-to-peer (p2p) networks, combining desktop computers and mobile devices, the homogeneous
   roles of peers clash with the heterogeneous capabilities of their hosts. Therefore, advanced p2p systems try to
   allocate heavier load to stronger peers. Identifying and indexing peers by their capacities is an ongoing research.
   Recently, we have proposed PacketSkip, a Skip Graph based, ordered indexing structure, that provides multidimensional
@@ -54,10 +55,12 @@ PacketSkip is described in details in the following two papers:
   p2p-overlay. Although its storage demands are already low, storage and update traffic scalability was still of
   concern for high-dimensional data. Also, the index uses the overlay's lookup mechanism which adds the networks lookup
   complexity as a factor to its communication's running time.  
-  In this paper, we propose several efficiency optimizations for the PacketSkip protocol which help to reduce storage
+  > In this paper, we propose several efficiency optimizations for the PacketSkip protocol which help to reduce storage
   and traffic costs by avoiding to send and store redundant information. These mechanisms are approximately halving the
   storage and update traffic costs as evaluation shows. Furthermore, we were able to clearly enhance traffic speed by
-  caching host information of PacketSkip nodes, and thereby avoiding frequent p2p-lookups.*
+  caching host information of PacketSkip nodes, and thereby avoiding frequent p2p-lookups.
+  >  
+  > → [HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf](paper/HHU_2017SS_Opp-P2P-Networks___Andreas-Funke___PacketSkip.pdf)
 
 
 ### Implementation
