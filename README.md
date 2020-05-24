@@ -23,7 +23,7 @@ applications for data with an ordinal sequence.
 
 ### Publications
 
-PacketSkip is described in details in the following two papers:
+PacketSkip is described in detail in the following two papers:
 
 * **A. Disterhöft, A. Funke, K. Graffi**: *PacketSkip: Skip Graph for Multidimensional Search in Structured
   Peer-to-Peer Systems*.  
