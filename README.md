@@ -25,7 +25,7 @@ applications for data with an ordinal sequence.
 
 PacketSkip is described in detail in the following two papers:
 
-* **A. Disterhöft, A. Funke, K. Graffi**: *PacketSkip: Skip Graph for Multidimensional Search in Structured
+* **Andreas Disterhöft, Andreas Funke, Kalman Graffi**: *PacketSkip: Skip Graph for Multidimensional Search in Structured
   Peer-to-Peer Systems*.  
   IEEE 11th International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2017)  
 
@@ -43,7 +43,7 @@ PacketSkip is described in detail in the following two papers:
   >  
   > → https://ieeexplore.ieee.org/document/8064026
 
-* **A. Funke**: *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*.  
+* **Andreas Funke**: *PacketSkip Revisited: Efficient Retrieval of Node Capabilities in Heterogeneous P2P Networks*.  
   Course paper for "Opportunistic and Peer-to-Peer Networks" (HHU 2017)  
 
   **Abstract:**  
